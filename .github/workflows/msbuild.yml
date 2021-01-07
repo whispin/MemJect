@@ -32,7 +32,7 @@ jobs:
         git config --global user.email AutoupdateRobot@email.com
         git config --global user.name AutoupdateRobot
         git add .
-        git commit -m "update dll" -a  
+        git commit -m "update exe" -a  
     - name: Push  file
       uses: ad-m/github-push-action@v0.6.0
       with:
