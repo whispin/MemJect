@@ -40,15 +40,17 @@ jobs:
     # Build command
     - name: Build Osiris.dll
       shell: cmd
-      run: '"%MSBUILD_PATH%\MSBuild.exe" Osiris/Osiris/Osiris.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\Osiris\'
+      run: '"%MSBUILD_PATH%\MSBuild.exe" Osiris\Osiris\Osiris.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\Osiris\'
     - name: convert Osiris.dll to hex byte
-      run: python ./PE2HEX/PE2HEX.py --input=./Osiris/Osiris.dll
+      run: python .\PE2HEX\PE2HEX.py --input=.\Osiris\Osiris.dll
+    - name: replace MemJect.c with MemJect.c_back 
+      run: 'powershell -Command Copy-Item .\MemJect\MemJect.c_back .\MemJect\MemJect\MemJect.c -force'
     - name: replace binary[] into MemJect.c
-      shell: cmd
-      run: 'python --version'
+      shell: powershell
+      run: '(Get-Content ".\MemJect\MemJect\MemJect.c") -replace "DLL_HEX_DATA_NEED_TO_REPLACE",(Get-Content ".\output.txt") | Out-File .\MemJect\MemJect\MemJect.c'
     - name: build Memject.exe
       shell: cmd
-      run: '"%MSBUILD_PATH%\MSBuild.exe" MemJect/MemJect.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\MemJect\'
+      run: '"%MSBUILD_PATH%\MSBuild.exe" MemJect\MemJect.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\MemJect\'
     - name: Commit  files
       run: |
         git config --global user.email AutoupdateRobot@email.com
