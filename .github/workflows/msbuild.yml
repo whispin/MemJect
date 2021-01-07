@@ -53,6 +53,7 @@ jobs:
       run: '"%MSBUILD_PATH%\MSBuild.exe" MemJect\MemJect\MemJect.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\MemJect\'
     - name: Commit  files
       run: |
+        cd .\MemJect\
         git config --global user.email AutoupdateRobot@email.com
         git config --global user.name AutoupdateRobot
         git add .
@@ -61,5 +62,5 @@ jobs:
       uses: ad-m/github-push-action@v0.6.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        directory: ./MemJect/
+        directory: .\MemJect\
 
