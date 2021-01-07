@@ -43,9 +43,6 @@ jobs:
       run: '"%MSBUILD_PATH%\MSBuild.exe" Osiris/Osiris/Osiris.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\Osiris\'
     - name: convert Osiris.dll to hex byte
       run: python ./PE2HEX/PE2HEX.py --input=./Osiris/Osiris.dll
-    - name: show output hex byte
-      shell: cmd
-      run: 'type "output.txt"'
     - name: replace binary[] into MemJect.c
       shell: cmd
       run: 'python --version'
@@ -62,4 +59,5 @@ jobs:
       uses: ad-m/github-push-action@v0.6.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        directory: ./MemJect/
 
