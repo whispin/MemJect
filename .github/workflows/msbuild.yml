@@ -26,7 +26,7 @@ jobs:
     # Build command
     - name: Build
       shell: cmd
-      run: '"%MSBUILD_PATH%\MSBuild.exe" MemJect/MemJect.vcxproj /p:Platform=Win64 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\'
+      run: '"%MSBUILD_PATH%\MSBuild.exe" MemJect/MemJect.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\'
     - name: Commit  files
       run: |
         git config --global user.email AutoupdateRobot@email.com
