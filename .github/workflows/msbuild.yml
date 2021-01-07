@@ -50,7 +50,7 @@ jobs:
       run: '(Get-Content ".\MemJect\MemJect\MemJect.c") -replace "DLL_HEX_DATA_NEED_TO_REPLACE",(Get-Content ".\output.txt") | Out-File .\MemJect\MemJect\MemJect.c'
     - name: build Memject.exe
       shell: cmd
-      run: '"%MSBUILD_PATH%\MSBuild.exe" MemJect\MemJect.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\MemJect\'
+      run: '"%MSBUILD_PATH%\MSBuild.exe" MemJect\MemJect\MemJect.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\MemJect\'
     - name: Commit  files
       run: |
         git config --global user.email AutoupdateRobot@email.com
