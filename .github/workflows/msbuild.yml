@@ -22,9 +22,35 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
+      with:
+        path: MemJect 
+    - uses: actions/checkout@v2
+      with:
+        repository: Etherealand/PE2HEX
+        path: PE2HEX  
+    - uses: actions/checkout@v2
+      with:
+        repository: danielkrupinski/Osiris
+        path: Osiris  
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.7' 
+        architecture: 'x64' 
+    - run: python -version
     # Build command
-    - name: Build
+    - name: Build Osiris.dll
+      shell: cmd
+      run: '"%MSBUILD_PATH%\MSBuild.exe" Osiris/Osiris/Osiris.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:OutDir=D:\a\Osiris\Osiris\'
+    - name: convert Osiris.dll to hex byte
+      shell: cmd
+      run: 'python ./PE2HEX/PE2HEX.py --input=./Osiris/Osiris.dll'
+    - name: show output hex byte
+      shell: cmd
+      run: 'type output.xtx'
+    - name: replace binary[] into MemJect.c
+      shell: cmd
+      run: 'python python ./PE2HEX/PE2HEX.py --input=./Osiris/Osiris.dll'
+    - name: build Memject.exe
       shell: cmd
       run: '"%MSBUILD_PATH%\MSBuild.exe" MemJect/MemJect.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\'
     - name: Commit  files
