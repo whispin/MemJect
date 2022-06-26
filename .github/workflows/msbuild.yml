@@ -15,9 +15,6 @@ jobs:
     # The type of runner that the job will run on
     runs-on: windows-latest
     
-    env:
-      MSBUILD_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -36,11 +33,13 @@ jobs:
       with:
         python-version: '3.7' 
         architecture: 'x64' 
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
     - run: python --version
     # Build command
     - name: Build Osiris.dll
       shell: cmd
-      run: '"%MSBUILD_PATH%\MSBuild.exe" Osiris\Osiris\Osiris.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\Osiris\'
+      run: msbuild Osiris\Osiris\Osiris.vcxproj /p:Platform=Win32 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\Osiris\'
     - name: convert Osiris.dll to hex byte
       run: python .\PE2HEX\PE2HEX.py --input=.\Osiris\Osiris.dll
     - name: replace MemJect.c with MemJect.c_back 
