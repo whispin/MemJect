@@ -54,7 +54,7 @@ jobs:
       run: |
         cd .\MemJect\
         git config --global user.email AutoupdateRobot@email.com
-        git config --global user.name AutoupdateRobot
+        git config --global user.name whispin
         git add .
         git commit -m "update exe" -a  
     - name: Push  file
