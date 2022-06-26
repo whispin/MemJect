@@ -39,7 +39,7 @@ jobs:
     # Build command
     - name: Build Osiris.dll
       shell: cmd
-      run: msbuild D:\a\MemJect\MemJect\Osiris\Osiris.sln /p:Platform=x86 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\Osiris\'
+      run: msbuild D:\a\MemJect\MemJect\Osiris\Osiris.sln /p:Platform=x86 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\Osiris\
     - name: convert Osiris.dll to hex byte
       run: python .\PE2HEX\PE2HEX.py --input=.\Osiris\Osiris.dll
     - name: replace MemJect.c with MemJect.c_back 
