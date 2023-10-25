@@ -8,22 +8,16 @@ on:
   watch:
     type: started
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: windows-latest
-    
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    runs-on: windows-2022
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
       with:
         path: MemJect 
     - uses: actions/checkout@v2
       with:
-        repository: Etherealand/PE2HEX
+        repository: danielkrupinski/PE2HEX
         path: PE2HEX  
     - uses: actions/checkout@v2
       with:
@@ -39,7 +33,7 @@ jobs:
     # Build command
     - name: Build Osiris.dll
       shell: cmd
-      run: msbuild D:\a\MemJect\MemJect\Osiris\Osiris.sln /p:Platform=x86 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\Osiris\
+      run: msbuild D:\a\MemJect\MemJect\Osiris\Osiris.sln /p:Platform=x64 /p:Configuration=[Debug, Release] /p:OutDir=D:\a\MemJect\MemJect\Osiris\  -Encoding utf8 -Append
     - name: convert Osiris.dll to hex byte
       run: python .\PE2HEX\PE2HEX.py --input=.\Osiris\Osiris.dll
     - name: replace MemJect.c with MemJect.c_back 
