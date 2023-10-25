@@ -37,6 +37,9 @@ jobs:
     - name: show build result
       shell: cmd
       run: dir D:\a\MemJect\MemJect\Osiris\
+    - name: show PE2HEX -h
+      shell: cmd
+      run: python .\PE2HEX\PE2HEX.py -h
     - name: convert Osiris.dll to hex byte
       run: python .\PE2HEX\PE2HEX.py input D:\a\MemJect\MemJect\Osiris\Osiris.dll
     - name: replace MemJect.c with MemJect.c_back 
