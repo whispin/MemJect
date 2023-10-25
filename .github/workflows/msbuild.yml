@@ -38,7 +38,7 @@ jobs:
       shell: cmd
       run: dir D:\a\MemJect\MemJect\Osiris\
     - name: convert Osiris.dll to hex byte
-      run: python .\PE2HEX\PE2HEX.py --input D:\a\MemJect\MemJect\Osiris\Osiris.dll
+      run: python .\PE2HEX\PE2HEX.py --key D:\a\MemJect\MemJect\Osiris\Osiris.dll
     - name: replace MemJect.c with MemJect.c_back 
       run: 'powershell -Command Copy-Item .\MemJect\MemJect.c_back .\MemJect\MemJect\MemJect.c -force'
     - name: replace binary[] into MemJect.c
