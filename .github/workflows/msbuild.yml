@@ -49,7 +49,7 @@ jobs:
       run: '(Get-Content ".\MemJect\MemJect\MemJect.c") -replace "DLL_HEX_DATA_NEED_TO_REPLACE",(Get-Content ".\output.txt") | Out-File .\MemJect\MemJect\MemJect.c'
     - name: build Memject.exe
       shell: cmd
-      run: msbuild MemJect\MemJect\MemJect.vcxproj /p:Platform=x86 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\MemJect\
+      run: msbuild MemJect\MemJect\MemJect.vcxproj /p:Platform=x64 /p:Configuration=Release /p:OutDir=D:\a\MemJect\MemJect\MemJect\
     - name: Commit  files
       run: |
         cd .\MemJect\
