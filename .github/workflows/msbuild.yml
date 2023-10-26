@@ -17,7 +17,7 @@ jobs:
         path: MemJect 
     - uses: actions/checkout@v2
       with:
-        repository: danielkrupinski/PE2HEX
+        repository: whispin/PE2HEX
         path: PE2HEX  
     - uses: actions/checkout@v2
       with:
